@@ -1,0 +1,8 @@
+<h1>Prepare for your face to be captured!</h1>
+<app-camera (getPicture) = "handleImage($event)"></app-camera>
+
+<div *ngIf='webcamImage' class="webcam-image">
+  <img [src] = "webcamImage.imageAsDataUrl">
+</div>
+
+<router-outlet></router-outlet>
