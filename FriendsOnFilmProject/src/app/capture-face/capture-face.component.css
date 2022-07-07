@@ -1,0 +1,22 @@
+.btn-group {
+    display: inline-block;
+    padding: 1% 2%;
+    font-size: 3vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #3077D9;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 1vw #999;
+    margin-bottom: 15px;
+  }
+  
+  .button:hover {background-color: #205AAC}
+  
+  .button:active {
+    background-color: #fddb19;
+    transform: translateY(1vw);
+  }

@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: lightblue;
+    text-align: center;
+}
+
+h1{
+    font-size: 5vw;
+}
+
+h2{
+    font-size: 4vw;
+}
+
+h3{
+    font-size: 3vw;
+}
+
+h4{
+    font-size: 2vw;
+}
+
+h5{
+    font-size: 1vw;
+}
+
+.button {
+    display: inline-block;
+    padding: 1% 2%;
+    font-size: 3vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #3077D9;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 1vw #999;
+    margin: 2vw;
+  }
+  
+  .button:hover {background-color: #205AAC}
+  
+  .button:active {
+    background-color: coral;
+    transform: translateY(1vw);
+  }
