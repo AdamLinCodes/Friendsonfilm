@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebcamImage } from 'ngx-webcam';
+import { UserService } from '../services/user.service';
 
-var xhttp;
 
 @Component({
   selector: 'app-capture-face',
@@ -12,22 +12,22 @@ export class CaptureFaceComponent implements OnInit {
 
   webcamImage: WebcamImage | undefined;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+
+  returnedData: any;
+
+  name: any;
 
   ngOnInit(): void {
   }
 
-  handleImage(webcamImage: WebcamImage) {
+  public async handleImage(webcamImage: WebcamImage) {
     this.webcamImage = webcamImage;
-    this.sendPhotoToServer(webcamImage.imageAsDataUrl);
-  }
+    let err: string;
 
-  sendPhotoToServer(imageUrl: string) {
-    console.log('the image has been sent to the server!');
-    xhttp = new XMLHttpRequest();
-    xhttp.open("GET", imageUrl, true); 
-    xhttp.setRequestHeader('Content-Type', 'text/plain');
-    xhttp.send();
-    
+    this.userService.isExistingUser(webcamImage.imageAsDataUrl).subscribe(data => {
+      this.name = data;
+      console.log('Server responded with name: ' + data);
+    });
   }
 }
