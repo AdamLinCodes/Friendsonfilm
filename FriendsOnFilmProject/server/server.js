@@ -32,16 +32,20 @@ function processRequest(request, response) {
 
       });
       request.on('end', () => {
-        file.writeFile('user.jpg', data, err => {
+
+        file.writeFile("./FacialRecog/user.jpg", data, 'base64', (err) => {
           if(err) {
             response.writeHead(500, { "Content-Type": "text/html"});
             response.end();
             return;
           }
         });
+
+        const responseData = file.readFileSync('./FacialRecog/scanResult.txt').toString();
+
         response.setHeader('Access-Control-Allow-Origin','*');
         response.writeHead(200, { "Content-Type": "text/plain"});
-        response.end('Adam');
+        response.end(responseData);
       });
     }
   }

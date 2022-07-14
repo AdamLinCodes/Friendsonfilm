@@ -79,11 +79,10 @@ def classify_face(im):
 
 
     # Display the resulting image
-    while True:
-
-        cv2.imshow('Video', img)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            return face_names 
+    text_file = open("scanResult.txt", "w")
+    text_file.write(face_names[0])
+    text_file.close()
+    return face_names[0] 
 
 
 print(classify_face("user.jpg"))
