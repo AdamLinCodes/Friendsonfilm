@@ -1,6 +1,7 @@
 const http = require("http"); // import the http module, so that we can create a web server
 const file = require("fs"); // import the fs (file system) module so that we read and write data to files
 const url = require("url"); // import the url module so we can parse the web address of the request into readable parts
+const exec = require('child_process').exec;
 
 var students;
 
@@ -41,13 +42,35 @@ function processRequest(request, response) {
           }
         });
 
-        const responseData = file.readFileSync('./FacialRecog/scanResult.txt').toString();
+        const os = new os_func();
 
-        response.setHeader('Access-Control-Allow-Origin','*');
-        response.writeHead(200, { "Content-Type": "text/plain"});
-        response.end(responseData);
+        os.execCommand('cd FacialRecog && python face_rec.py', () => {
+
+          const responseData = file.readFileSync('./FacialRecog/scanResult.txt').toString();
+
+          response.setHeader('Access-Control-Allow-Origin','*');
+          response.writeHead(200, { "Content-Type": "text/plain"});
+          response.end(responseData);
+        });
+
+        
+        // file.unlink('./FacialRecog/scanResult.txt');
+
+
       });
     }
   }
 }
 
+function os_func() {
+  this.execCommand = function(cmd, callback) {
+      exec(cmd, (error, stdout, stderr) => {
+          if (error) {
+              console.error(`exec error: ${error}`);
+              return;
+          }
+
+          callback(stdout);
+      });
+  }
+}
