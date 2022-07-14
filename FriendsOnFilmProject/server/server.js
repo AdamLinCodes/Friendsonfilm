@@ -17,23 +17,7 @@ server.listen(port, host, () => { // Bind the port and host to the server
 function processRequest(request, response) {
   let urlObject = url.parse(request.url, true); // parses the URL into readable parts
 
-  if(request.method == "GET"){
-    if(request.url == "/user-exists") {
-
-      response.writeHead(200, { "Content-Type": "text/html"});
-      response.end("User exists!");
-    }
-    if(request.url === "/index.html"){
-      file.readFile('index.html', 'utf-8', function(err, contents) {
-        if(err) {
-          response.writeHead(500, { "Content-Type": "text/html"});
-          response.end();
-          return;
-        }
-        response.writeHead(200, { "Content-Type": "text/html"});
-        response.end(contents);
-      });
-    }
+  if(request.method == "GET"){  
     if(request.url === "/testing") {
       response.setHeader('Access-Control-Allow-Origin','*');
       response.writeHead(200, { "Content-Type": "text/plain"});
