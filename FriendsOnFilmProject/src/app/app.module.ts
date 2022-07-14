@@ -7,17 +7,19 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { CaptureFaceComponent } from './capture-face/capture-face.component';
 import { CameraComponent } from './camera/camera.component';
 import { WebcamModule} from 'ngx-webcam';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
     AppComponent,
+    CameraComponent,
     MainPageComponent,
     CaptureFaceComponent,
-    CameraComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    HttpClientModule,
     WebcamModule
   ],
   providers: [],

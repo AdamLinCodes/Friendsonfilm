@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "file-system": "^2.2.2",
+    "image-data-uri": "^2.0.1",
     "ngx-webcam": "^0.4.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
