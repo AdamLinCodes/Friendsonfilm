@@ -1,8 +1,10 @@
-<h1>Prepare for your face to be captured!</h1>
+
 <app-camera (getPicture) = "handleImage($event)"></app-camera>
 
-<div *ngIf='webcamImage' class="webcam-image">
-  <img [src] = "webcamImage.imageAsDataUrl">
+<div *ngIf="webcamImage" class="webcam-image">
+  
+  <img [src] = "webcamImage.imageAsDataUrl" id="faceImage">
+  <img src = "../../assets/loadingCircle.gif" id="loadingGif">
 </div>
 
 <router-outlet></router-outlet>

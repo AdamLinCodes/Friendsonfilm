@@ -80,9 +80,13 @@ def classify_face(im):
 
     # Display the resulting image
     text_file = open("scanResult.txt", "w")
-    text_file.write(face_names[0])
+    if len(face_names) == 0:
+        text_file.write('Unknown')
+        return 'Unknown'
+    else:
+        text_file.write(face_names[0])
+        return face_names[0] 
     text_file.close()
-    return face_names[0] 
 
 
 print(classify_face("user.jpg"))
