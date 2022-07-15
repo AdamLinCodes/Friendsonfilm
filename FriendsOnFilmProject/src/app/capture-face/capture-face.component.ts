@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebcamImage } from 'ngx-webcam';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,11 +13,11 @@ export class CaptureFaceComponent implements OnInit {
 
   webcamImage: WebcamImage | undefined;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
-  returnedData: any;
+  public returnedData: any;
 
-  name: any;
+  public name: any;
 
   ngOnInit(): void {
   }
@@ -25,9 +26,18 @@ export class CaptureFaceComponent implements OnInit {
     this.webcamImage = webcamImage;
     let err: string;
 
+    this.router.navigate(['/loading']);
+
     this.userService.isExistingUser(webcamImage.imageAsBase64).subscribe(data => {
       this.name = data;
       console.log('Server responded with name: ' + data);
+      if (data != 'Unknown') {
+        this.router.navigate(['/view-photos']);
+      }
+      else {
+        alert(`Sorry, it looks like you don't have an account yet`);
+        this.router.navigate(['/capture-face']);
+      }
     });
   }
 }
