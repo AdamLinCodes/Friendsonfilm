@@ -4,6 +4,7 @@
     color: #000b00; /* black */
     color: #001300; /* Dark Green */
     color: #091900; /* Lighter Green */
+    color: #DFD686;
     color: #9a8f7d; /* Beige */
     color: #e5e4df; /* Light Taupe */
     color: #ffffff; /* White:  */
@@ -17,6 +18,7 @@ body{
 }
 
 h1{
+    color: #dac898;
     font-size: 5vw;
 }
 
@@ -28,14 +30,6 @@ h3{
     font-size: 3vw;
 }
 
-h4{
-    font-size: 2vw;
-}
-
-h5{
-    font-size: 1vw;
-}
-
 .button {
     display: inline-block;
     padding: 1% 2%;
@@ -45,18 +39,23 @@ h5{
     text-decoration: none;
     outline: none;
     color: #000;
-    background-color: #9a8f7d;
+    background-color: #dac898;
     border: none;
     border-radius: 15px;
     box-shadow: 0 1vw #999;
     margin: 2vw;
 }
 
+p {
+    color: #dac898;
+    font-size: 2vw;
+}
+
 .button:hover {
-    background-color: #205AAC
+    background-color: #a8a5a1;
 }
 
 .button:active {
-    background-color: coral;
+    background-color: rgb(3, 4, 54);
     transform: translateY(1vw);
 }
