@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
+#colourpallette{
+    color: #000b00; /* black */
+    color: #001300; /* Dark Green */
+    color: #091900; /* Lighter Green */
+    color: #9a8f7d; /* Beige */
+    color: #e5e4df; /* Light Taupe */
+    color: #ffffff; /* White:  */
+}
+
+
 body{
     background-color: #091900;
     text-align: center;
