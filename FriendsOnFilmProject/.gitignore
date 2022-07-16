@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+#Facial recogonition files
+/server/FacialRecog/scanResult.txt
+/server/FacialRecog/user.jpg
+
 # Compiled output
 /dist
 /tmp
