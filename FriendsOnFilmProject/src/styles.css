@@ -1,7 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
 body{
-    background-color: lightblue;
+    background-color: #091900;
     text-align: center;
+    font-family: "Didot", serif;
+}
+.navbar{
+    background-color: #9a8f7d;
+}
+
+ul{
+    list-style-type: none;
 }
 
 h1{
@@ -27,20 +36,22 @@ h5{
 .button {
     display: inline-block;
     padding: 1% 2%;
-    font-size: 3vw;
+    font-size: 4vw;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fff;
-    background-color: #3077D9;
+    color: #000;
+    background-color: #9a8f7d;
     border: none;
     border-radius: 15px;
     box-shadow: 0 1vw #999;
     margin: 2vw;
   }
   
-  .button:hover {background-color: #205AAC}
+  .button:hover {
+    background-color: #205AAC
+  }
   
   .button:active {
     background-color: coral;
