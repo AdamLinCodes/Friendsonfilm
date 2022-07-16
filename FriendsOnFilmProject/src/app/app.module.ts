@@ -10,7 +10,8 @@ import { WebcamModule} from 'ngx-webcam';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewPhotosComponent } from './view-photos/view-photos.component';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
-import { ErrorComponent } from './error/error.component'
+import { ErrorComponent } from './error/error.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ErrorComponent } from './error/error.component'
     ViewPhotosComponent,
     LoadingScreenComponent,
     ErrorComponent,
+    NavigationBarComponent,
   ],
   imports: [
     AppRoutingModule,
