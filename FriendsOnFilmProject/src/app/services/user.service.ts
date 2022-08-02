@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { WebcamImage } from 'ngx-webcam';
 
 
 
@@ -17,5 +16,9 @@ export class UserService {
 
   isExistingUser(word: string) {
     return this.http.post('http://localhost:8000/facecheck', word,  {responseType: 'text'});
+  }
+
+  getPhotos() {
+    return this.http.get('http://localhost:8000/retrievePhotos', {responseType: 'text'});
   }
 }
