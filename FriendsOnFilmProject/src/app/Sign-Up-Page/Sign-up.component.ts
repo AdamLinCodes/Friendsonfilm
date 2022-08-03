@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ICredintials } from "src/interfaces";
 import { UserService } from "../services/user.service";
 
 @Component({
@@ -11,9 +12,13 @@ export class SignUpComponent{
   constructor(private userservice: UserService) {}
   public showPassword: boolean = false;
 
-  onSignUp(usernameInput: HTMLInputElement, passwordInput: HTMLInputElement){
-
-    this.userservice.getInfo(usernameInput.value, passwordInput.value).subscribe((data) => {
+  onSignUp(usernameInput: HTMLInputElement, passwordInput: HTMLInputElement,EmailInput:HTMLInputElement,passwordInput2:HTMLInputElement){
+    const credentials:ICredintials ={
+      email:EmailInput.value,
+      username:usernameInput.value,
+      password:passwordInput.value
+    }
+    this.userservice.getInfo(credentials).subscribe((data) => {
       //this is what happens when server's response is recieved by angular
       console.log(data);
     });

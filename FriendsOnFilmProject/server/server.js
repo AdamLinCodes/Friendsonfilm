@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 8000;
 const file = require("fs");
+const { json } = require('stream/consumers');
 const exec = require('child_process').exec;
 const mc = require("mongodb").MongoClient;
 const config = require("./config.js");
@@ -14,14 +15,15 @@ app.get('/retrievePhotos', getPhotos);
 app.post('/facecheck', facecheckAuthentication);
 
 app.post('/SignedUp', signUp);
-
+let UsersCollection;
 //is running the server
 mc.connect(config.db.host, function(err, client) {
   if(err) throw err;
 	console.log(`We have successfully connected to the ${config.db.name} database.`);
 
 	photosDb = client.db(config.db.name);
-
+  //add an collection validator
+  UsersCollection = photosDb.collection("UsersCollection");
   app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
   });
@@ -71,18 +73,28 @@ function facecheckAuthentication(request, response) {
   });
 }
 
-function signUp(request, response) {
+async function signUp(request, response) {
+
   let data = "";
   request.on('data', chunk => {
     data += chunk.toString();
   });
 
-  request.on('end', () => {
 
-    console.log(JSON.parse(data));
+
+
+  request.on('end', async () => {
+    data=JSON.parse(data);
+    console.log(data);
+    const info = await UsersCollection.count({ $or:[ {'email':data. email}, {'username':data. username}, {'password':data. password}]});
+    console.log("-----------");
+    console.log(info)
+    if(info ===0){
+      UsersCollection.insertOne( { email: data. email, username:data. username,password:data. password } )
+    }
     response.setHeader('Access-Control-Allow-Origin','*');
     response.writeHead(200, { "Content-Type": "text/plain"});
-    response.end('The request worked! - Adam ;)');
+    response.end('The request worked! - BigSully ;)');
   });
 }
 
