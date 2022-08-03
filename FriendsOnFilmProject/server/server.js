@@ -1,17 +1,21 @@
 const express = require('express');
 const app = express();
 const port = 8000;
-const file = require("fs"); 
+const file = require("fs");
 const exec = require('child_process').exec;
 const mc = require("mongodb").MongoClient;
-const config = require("./config.js"); 
+const config = require("./config.js");
 
 let photosDb;
 
+//routes/endpoints
 app.get('/retrievePhotos', getPhotos);
 
 app.post('/facecheck', facecheckAuthentication);
 
+app.post('/SignedUp', signUp);
+
+//is running the server
 mc.connect(config.db.host, function(err, client) {
   if(err) throw err;
 	console.log(`We have successfully connected to the ${config.db.name} database.`);
@@ -23,6 +27,7 @@ mc.connect(config.db.host, function(err, client) {
   });
 });
 
+//these are the functions that are called depending on the which endpoint is called
 async function getPhotos(request, response) {
   let photosCollection = photosDb.collection("photos collection");
   let base64Strings = [];
@@ -63,6 +68,21 @@ function facecheckAuthentication(request, response) {
 
       console.log('Scan results: ' + responseData);
     });
+  });
+}
+
+function signUp(request, response) {
+  let data = "";
+  request.on('data', chunk => {
+    data += chunk.toString();
+  });
+
+  request.on('end', () => {
+
+    console.log(JSON.parse(data));
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.writeHead(200, { "Content-Type": "text/plain"});
+    response.end('The request worked! - Adam ;)');
   });
 }
 
