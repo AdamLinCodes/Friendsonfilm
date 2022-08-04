@@ -21,3 +21,7 @@ li a {
 li a:hover {
   background-color: #e5e4df;
 }
+
+li a:active {
+  background-color: #e2e0da;
+}

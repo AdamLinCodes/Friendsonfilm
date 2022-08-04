@@ -55,7 +55,7 @@ p {
 }
 
 .button:active {
-    background-color: rgb(3, 4, 54);
+    background-color: #e2e0da;
     transform: translateY(1vw);
 }
 
