@@ -9,13 +9,11 @@ import { UserService } from "../services/user.service";
 export class SignUpComponent{
 
   constructor(private userservice: UserService) {}
-  Name='';
-  Pass='';
   public showPassword: boolean = false;
 
-  onSignUp(NameInput:HTMLInputElement, PassInput:HTMLInputElement){
+  onSignUp(usernameInput: HTMLInputElement, passwordInput: HTMLInputElement){
 
-    this.userservice.getInfo(NameInput.value, PassInput.value).subscribe((data) => {
+    this.userservice.getInfo(usernameInput.value, passwordInput.value).subscribe((data) => {
       //this is what happens when server's response is recieved by angular
       console.log(data);
     });

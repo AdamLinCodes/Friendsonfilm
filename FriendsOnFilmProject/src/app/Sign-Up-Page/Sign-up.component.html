@@ -1,22 +1,16 @@
+<mat-card class="signUpCard">
 
-<app-header></app-header>
-<br><br><br><br><br><br><br><br><br>
-<main>
-<mat-card>
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input matInput  name="Name" #NameInput maxlength="15">
+  <mat-form-field appearance="fill" class="inputField">
+    <mat-label>Username</mat-label>
+    <input matInput #usernameInput maxlength="15">
   </mat-form-field>
-  <mat-form-field appearance="fill">
+
+  <mat-form-field appearance="fill" class="inputField">
     <mat-label>Password</mat-label>
-    <input matInput [type]="showPassword ? 'text' : 'password'" name="password" #PassInput maxlength="15">
+    <input matInput [type]="showPassword ? 'text' : 'password'" #passwordInput maxlength="15">
     <mat-icon matSuffix (click)="togglePasswordVisibility()">visibility</mat-icon>
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="onSignUp(NameInput,PassInput)">Sign Up</button>
+
+  <button mat-raised-button (click)="onSignUp(usernameInput, passwordInput)" class="submitButton">Sign Up</button>
+  
 </mat-card>
-
-<hr>
-
-
-<p>{{Name}}</p>
-<p>{{Pass}}</p>
