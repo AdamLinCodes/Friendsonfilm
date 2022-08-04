@@ -10,11 +10,11 @@ import { ViewPhotosComponent } from './view-photos/view-photos.component';
 const routes: Routes = [
   {
     path:'',
-    component: SignUpComponent
+    component: MainPageComponent
   },
   {
-    path:'Main-Page',
-    component: MainPageComponent
+    path:'sign-up',
+    component: SignUpComponent
   },
   {
     path: 'capture-face',

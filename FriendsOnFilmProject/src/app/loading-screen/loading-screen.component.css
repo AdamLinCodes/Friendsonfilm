@@ -1,5 +1,15 @@
 
-img {
-  height: 100%;
-  width: 100%;
+#loadingCamera {
+  height: 25%;
+  width: 15%;
+  display: block;
+  margin: auto;
+}
+
+#loadingDots {
+  height: 15%;
+  width: 15%;
+  filter: invert(100%);
+  display: block;
+  margin: auto;
 }

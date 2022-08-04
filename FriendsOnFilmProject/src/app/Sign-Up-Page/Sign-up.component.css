@@ -1,12 +1,15 @@
-
-mat-card{
-  width: 80%;
-  margin:auto;
+ 
+.inputField {
+  display: block;
+  font-size: large;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-mat-form-field,
-textarea{
-  width: 100%;
+.signUpCard {
+  width: 50%;
+  height: 30%;
+  margin: auto;
+  margin-top: 10%;
+  block-size: fit-content;
 }
-
-

@@ -22,8 +22,8 @@ export class UserService {
     return this.http.get('http://localhost:8000/retrievePhotos', {responseType: 'text'});
   }
 
-  getInfo(Name: string,password:string) {
-    const credentials = {Name:Name,password:password};
+  getInfo(username: string, password: string) {
+    const credentials = {username:username, password:password};
     return this.http.post('http://localhost:8000/SignedUp', JSON.stringify(credentials),  {responseType: 'text'});
   }
 }
