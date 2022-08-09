@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { WebcamImage } from 'ngx-webcam';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
 
 
 @Component({

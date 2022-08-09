@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ICredentials } from 'src/interfaces';
 
 
 
@@ -22,8 +23,7 @@ export class UserService {
     return this.http.get('http://localhost:8000/retrievePhotos', {responseType: 'text'});
   }
 
-  getInfo(username: string, password: string) {
-    const credentials = {username:username, password:password};
+  sendCredentials(credentials: ICredentials) {
     return this.http.post('http://localhost:8000/SignedUp', JSON.stringify(credentials),  {responseType: 'text'});
   }
 }
