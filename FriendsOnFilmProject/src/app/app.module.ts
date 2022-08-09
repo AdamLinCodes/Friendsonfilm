@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -12,6 +11,7 @@ import { ViewPhotosComponent } from './view-photos/view-photos.component';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import { ErrorComponent } from './error/error.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component'
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     LoadingScreenComponent,
     ErrorComponent,
     NavigationBarComponent,
+    SignUpComponent,
   ],
   imports: [
     AppRoutingModule,

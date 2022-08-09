@@ -1,0 +1,19 @@
+<h1>Create an account </h1>
+
+<div class="container">
+  <form (ngSubmit)="submitCredentials($event)">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Email">
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="Username or Email">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Password">
+
+    <label for="confirm">Confirm Password</label>
+    <input type="password" id="confirm" name="confirm" placeholder="Confirm Password">
+  
+    <input type="submit" value="Submit">
+  </form>
+</div>
