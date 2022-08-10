@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ICredintials } from "src/interfaces";
+import { ICredentials } from "src/interfaces";
 import { UserService } from "../services/user.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class SignUpComponent{
   public showPassword: boolean = false;
 
   onSignUp(usernameInput: HTMLInputElement, passwordInput: HTMLInputElement,EmailInput:HTMLInputElement,passwordInput2:HTMLInputElement){
-    const credentials:ICredintials ={
+    const credentials:ICredentials ={
       email:EmailInput.value,
       username:usernameInput.value,
       password:passwordInput.value

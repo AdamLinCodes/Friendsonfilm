@@ -55,7 +55,7 @@ p {
 }
 
 .button:active {
-    background-color: rgb(3, 4, 54);
+    background-color: #e2e0da;
     transform: translateY(1vw);
 }
 
@@ -63,5 +63,3 @@ p {
     width: 20%;
     height: 20%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

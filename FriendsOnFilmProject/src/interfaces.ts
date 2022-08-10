@@ -1,6 +1,5 @@
-export interface ICredintials{
-  email:string,
-  username:string,
-  password:string
-
-}
+export interface ICredentials {
+  email: string;
+  username: string;
+  password: string;
+};
