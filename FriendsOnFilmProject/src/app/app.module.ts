@@ -12,6 +12,7 @@ import { LoadingScreenComponent } from './loading-screen/loading-screen.componen
 import { ErrorComponent } from './error/error.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component'
 import { FormsModule } from '@angular/forms';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     LoadingScreenComponent,
     ErrorComponent,
     NavigationBarComponent,
+    SignUpComponent,
   ],
   imports: [
     AppRoutingModule,
