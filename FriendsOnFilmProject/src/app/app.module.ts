@@ -12,13 +12,6 @@ import { LoadingScreenComponent } from './loading-screen/loading-screen.componen
 import { ErrorComponent } from './error/error.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component'
 import { FormsModule } from '@angular/forms';
-import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatIconModule } from '@angular/material/icon';
-import { ErrorStateMatcher } from '@angular/material/core';
-
-
-import {SignUpComponent} from './Sign-Up-Page/Sign-up.component';
-
 
 @NgModule({
   declarations: [
@@ -30,7 +23,6 @@ import {SignUpComponent} from './Sign-Up-Page/Sign-up.component';
     LoadingScreenComponent,
     ErrorComponent,
     NavigationBarComponent,
-    SignUpComponent,
   ],
   imports: [
     AppRoutingModule,

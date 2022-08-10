@@ -4,7 +4,6 @@ import { CaptureFaceComponent } from './capture-face/capture-face.component';
 import { ErrorComponent } from './error/error.component';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { ViewPhotosComponent } from './view-photos/view-photos.component';
 
 const routes: Routes = [
@@ -28,10 +27,6 @@ const routes: Routes = [
     path: 'error',
     component: ErrorComponent
   },
-  {
-    path: 'sign-up',
-    component: SignUpComponent
-  }
 ];
 
 @NgModule({
