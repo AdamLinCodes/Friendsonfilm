@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ICredentials } from 'src/interfaces';
 import { UserService } from '../services/user.service';
@@ -13,7 +14,8 @@ export class SignUpComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-  }
+  } 
+
   
   public async submitCredentials(event: any): Promise<void> {
 
@@ -27,5 +29,6 @@ export class SignUpComponent implements OnInit {
       console.log(data);
     });
     this.router.navigate(['/error']);
+    
   }
 }

@@ -13,6 +13,8 @@ import { ErrorComponent } from './error/error.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component'
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     HttpClientModule,
     WebcamModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
