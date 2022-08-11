@@ -7,7 +7,7 @@ const exec = require('child_process').exec;
 const mc = require("mongodb").MongoClient;
 const config = require("./config.js");
 
-let photosDb;
+var photosDb;
 
 //routes/endpoints
 app.get('/retrievePhotos', getPhotos);
@@ -15,7 +15,7 @@ app.get('/retrievePhotos', getPhotos);
 app.post('/facecheck', facecheckAuthentication);
 
 app.post('/SignedUp', signUp);
-let UsersCollection;
+
 //is running the server
 mc.connect(config.db.host, function(err, client) {
   if(err) throw err;
@@ -23,15 +23,14 @@ mc.connect(config.db.host, function(err, client) {
 
 	photosDb = client.db(config.db.name);
   //add an collection validator
-  UsersCollection = photosDb.collection("UsersCollection");
   app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
   });
 });
 
-//these are the functions that are called depending on the which endpoint is called
+//endpoints
 async function getPhotos(request, response) {
-  let photosCollection = photosDb.collection("photos collection");
+  const photosCollection = photosDb.collection("photos collection");
   let base64Strings = [];
   await photosCollection.find({}).forEach(data => {
     base64Strings.push(data['imgBase64']);
@@ -80,18 +79,16 @@ async function signUp(request, response) {
     data += chunk.toString();
   });
 
-
-
-
   request.on('end', async () => {
     data=JSON.parse(data);
-    console.log(data);
-    const info = await UsersCollection.count({ $or:[ {'email':data. email}, {'username':data. username}, {'password':data. password}]});
-    console.log("-----------");
-    console.log(info)
-    if(info ===0){
-      UsersCollection.insertOne( { email: data. email, username:data. username,password:data. password } )
+    const usersCollection = photosDb.collection("users collection");
+
+    const existingCredentials = await usersCollection.count({ $or:[ {'email':data['email']}, {'username':data['username']}, {'password':data['password']}]});
+    
+    if (existingCredentials === 0) {
+      usersCollection.insertOne( { email: data. email, username:data. username,password:data. password } )
     }
+
     response.setHeader('Access-Control-Allow-Origin','*');
     response.writeHead(200, { "Content-Type": "text/plain"});
     response.end('The request worked! - BigSully ;)');
