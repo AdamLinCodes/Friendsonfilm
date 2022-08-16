@@ -29,6 +29,10 @@ export class ViewPhotosComponent implements OnInit {
     const gallery = document.getElementById('gallery');
 
     if (gallery !== null) {
+
+      const loadingElement = document.getElementById('loadingPhotos');
+      if (loadingElement !== null) loadingElement.style.display = 'none';
+
       this.photos.forEach((photoBase64: string) => {
         const imgElement = document.createElement("img");
         imgElement.src = 'data:image/jpeg;base64,' + photoBase64;
