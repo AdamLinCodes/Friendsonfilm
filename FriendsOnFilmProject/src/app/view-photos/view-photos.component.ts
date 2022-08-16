@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-view-photos',
   templateUrl: './view-photos.component.html',
-  styleUrls: ['./view-photos.component.css']
+  styleUrls: ['./view-photos.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ViewPhotosComponent implements OnInit {
 
@@ -31,7 +32,7 @@ export class ViewPhotosComponent implements OnInit {
       this.photos.forEach((photoBase64: string) => {
         const imgElement = document.createElement("img");
         imgElement.src = 'data:image/jpeg;base64,' + photoBase64;
-        imgElement.setAttribute("class", "photos");
+        imgElement.setAttribute("class", "photos photosContainer");
         gallery.appendChild(imgElement);
       });
     }
