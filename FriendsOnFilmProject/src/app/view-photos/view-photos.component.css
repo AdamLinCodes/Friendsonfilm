@@ -11,3 +11,18 @@
 #gallery > img {
   margin: 1vw;
 }
+
+#loadingPhotos > #loadingCamera {
+  height: 25%;
+  width: 15%;
+  display: block;
+  margin: auto;
+}
+
+#loadingPhotos> #loadingDots {
+  height: 15%;
+  width: 15%;
+  filter: invert(100%);
+  display: block;
+  margin: auto;
+}
