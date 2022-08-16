@@ -4,31 +4,33 @@ const port = 8000;
 const file = require("fs");
 const { json } = require('stream/consumers');
 const exec = require('child_process').exec;
-const mc = require("mongodb").MongoClient;
+const mongoClient = require("mongodb").MongoClient;
 const config = require("./config.js");
 
 var photosDb;
 
-//routes/endpoints
+//routes
 app.get('/retrievePhotos', getPhotos);
 
 app.post('/facecheck', facecheckAuthentication);
 
 app.post('/SignedUp', signUp);
 
+
 //is running the server
-mc.connect(config.db.host, function(err, client) {
+mongoClient.connect(config.db.host, function(err, client) {
   if(err) throw err;
 	console.log(`We have successfully connected to the ${config.db.name} database.`);
 
 	photosDb = client.db(config.db.name);
-  //add an collection validator
+
   app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
+    console.log(`Server is listening on port: ${port}`);
   });
 });
 
-//endpoints
+
+//endpoints functions
 async function getPhotos(request, response) {
   const photosCollection = photosDb.collection("photos collection");
   let base64Strings = [];
@@ -74,24 +76,49 @@ function facecheckAuthentication(request, response) {
 
 async function signUp(request, response) {
 
-  let data = "";
+  let data = '';
   request.on('data', chunk => {
     data += chunk.toString();
   });
 
   request.on('end', async () => {
-    data=JSON.parse(data);
+    const credentialsDocument = JSON.parse(data);    
     const usersCollection = photosDb.collection("users collection");
+    const existingCredentials = [];
 
-    const existingCredentials = await usersCollection.count({ $or:[ {'email':data['email']}, {'username':data['username']}, {'password':data['password']}]});
+    await usersCollection.find({ $or:[ 
+      {'email': credentialsDocument['email']},
+      {'username': credentialsDocument['username']},
+      {'password': credentialsDocument['password']}
+    ]}).forEach(data => {
+      existingCredentials.push(data);
+    });;
+
+    let responseObject = {
+      emailExists: false,
+      usernameExists: false,
+      passwordExists: false
+    };
+
+    if (existingCredentials.length !== 0) {
+      if (existingCredentials[0]['email'] === credentialsDocument['email']) {
+        responseObject['emailExists'] = true;
+      } 
+      if (existingCredentials[0]['username'] === credentialsDocument['username']) {
+        responseObject['usernameExists'] = true;
+      } 
+      if (existingCredentials[0]['password'] === credentialsDocument['password']) {
+        responseObject['passwordExists'] = true;
+      } 
+    }
     
-    if (existingCredentials === 0) {
-      usersCollection.insertOne( { email: data. email, username:data. username,password:data. password } )
+    if (checkResponseObject(responseObject)) {
+      await usersCollection.insertOne(credentialsDocument);
     }
 
     response.setHeader('Access-Control-Allow-Origin','*');
     response.writeHead(200, { "Content-Type": "text/plain"});
-    response.end('The request worked! - BigSully ;)');
+    response.end(JSON.stringify(responseObject));
   });
 }
 
@@ -105,4 +132,8 @@ function os_func() {
       callback(stdout);
     });
   }
+}
+
+function checkResponseObject(responseObject) {
+  return !responseObject['emailExists'] && !responseObject['usernameExists'] && !responseObject['passwordExists'];
 }
