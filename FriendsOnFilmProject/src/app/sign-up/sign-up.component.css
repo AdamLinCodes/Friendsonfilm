@@ -49,3 +49,9 @@ div.container {
   margin-left: 5px;
   position: absolute;
 }
+
+input[disabled], input[disabled]:hover, input[disabled]:active {
+  background-color: #7f653c;
+  color: black;
+  opacity: 0.5;
+}
