@@ -16,6 +16,8 @@ app.post('/facecheck', facecheckAuthentication);
 
 app.post('/SignedUp', signUp);
 
+app.post('/checkCredentialsExist', credentialsExist);
+
 
 //is running the server
 mongoClient.connect(config.db.host, function(err, client) {
@@ -119,6 +121,32 @@ async function signUp(request, response) {
     response.setHeader('Access-Control-Allow-Origin','*');
     response.writeHead(200, { "Content-Type": "text/plain"});
     response.end(JSON.stringify(responseObject));
+  });
+}
+
+async function credentialsExist(request, response) {
+  let data = '';
+  request.on('data', chunk => {
+    data += chunk.toString();
+  });
+
+  request.on('end', async () => {
+    const credentialsDocument = JSON.parse(data);    
+    const usersCollection = photosDb.collection("users collection");
+
+    const userDocument = await usersCollection.findOne({
+      'username': credentialsDocument['username'],
+      'password': credentialsDocument['password']
+    });
+
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.writeHead(200, { "Content-Type": "text/plain"});
+
+    if (userDocument !== undefined && userDocument !== null) {
+      response.end(JSON.stringify(true));
+    } else {
+      response.end(JSON.stringify(false));
+    }
   });
 }
 

@@ -24,4 +24,9 @@ export class UserService {
   sendCredentials(credentials: ICredentials) {
     return this.http.post('http://localhost:8000/SignedUp', JSON.stringify(credentials),  {responseType: 'text'});
   }
+
+  checkCredentialsExist(credentials: ICredentials) {
+    return this.http.post('http://localhost:8000/checkCredentialsExist', JSON.stringify(credentials),  {responseType: 'text'});
+
+  }
 }

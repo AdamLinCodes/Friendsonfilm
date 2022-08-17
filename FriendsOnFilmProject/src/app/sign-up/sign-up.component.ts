@@ -39,7 +39,7 @@ export class SignUpComponent {
 
         if (!responseObject['emailExists'] && !responseObject['usernameExists'] && !responseObject['passwordExists']) {
           console.log(responseObject);
-          this.router.navigate(['/error']);
+          this.router.navigate(['/']);
         }
         else {
           this.emailExists = !responseObject['emailExists'];
