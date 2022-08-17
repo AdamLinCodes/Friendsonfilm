@@ -16,6 +16,11 @@ body{
     font-family: "Didot", serif;
 }
 
+p {
+    color: #dac898;
+    font-size: 2vw;
+}
+
 h1{
     color: #dac898;
     font-size: 5vw;
@@ -43,11 +48,6 @@ h3{
     border-radius: 15px;
     box-shadow: 0 1vw #999;
     margin: 2vw;
-}
-
-p {
-    color: #dac898;
-    font-size: 2vw;
 }
 
 .button:hover {
