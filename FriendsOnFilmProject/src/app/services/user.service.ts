@@ -9,24 +9,19 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers() {
-    return this.http.get('http://localhost:8000/testing', {responseType: 'text'});
-  }
-
-  isExistingUser(word: string) {
-    return this.http.post('http://localhost:8000/facecheck', word,  {responseType: 'text'});
+  isExistingFace(word: string) {
+    return this.http.post('http://localhost:8000/scanFace', word,  {responseType: 'text'});
   }
 
   getPhotos() {
-    return this.http.get('http://localhost:8000/retrievePhotos', {responseType: 'text'});
+    return this.http.get('http://localhost:8000/getPhotos', {responseType: 'text'});
   }
 
   sendCredentials(credentials: ICredentials) {
-    return this.http.post('http://localhost:8000/SignedUp', JSON.stringify(credentials),  {responseType: 'text'});
+    return this.http.post('http://localhost:8000/addCredentials', JSON.stringify(credentials),  {responseType: 'text'});
   }
 
   checkCredentialsExist(credentials: ICredentials) {
     return this.http.post('http://localhost:8000/checkCredentialsExist', JSON.stringify(credentials),  {responseType: 'text'});
-
   }
 }
