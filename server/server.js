@@ -52,7 +52,7 @@ function authenticateFace(request, response) {
   });
 
   request.on('end', () => {
-    file.writeFile("./FacialRecog/user.jpg", data, 'base64', (err) => {
+    file.writeFile("./FacialRecog/user/user.jpg", data, 'base64', (err) => {
       if(err) {
         response.writeHead(500, { 'Content-Type': 'text/html'});
         response.end();
