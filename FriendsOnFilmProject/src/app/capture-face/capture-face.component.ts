@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebcamImage } from 'ngx-webcam';
-import { UserService } from '../services/user.service';
-
+import { FaceScanService } from '../services/face-scan.service';
 
 @Component({
   selector: 'app-capture-face',
@@ -13,7 +12,7 @@ export class CaptureFaceComponent implements OnInit {
 
   webcamImage: WebcamImage | undefined;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private faceScanService: FaceScanService, private router: Router) { }
 
   public returnedData: any;
 
@@ -28,7 +27,7 @@ export class CaptureFaceComponent implements OnInit {
 
     this.router.navigate(['/loading']);
 
-    this.userService.isExistingFace(webcamImage.imageAsBase64).subscribe(data => {
+    this.faceScanService.isExistingFace(webcamImage.imageAsBase64).subscribe(data => {
       this.name = data;
       console.log('Server responded with name: ' + data);
       if (data != 'Unknown') {

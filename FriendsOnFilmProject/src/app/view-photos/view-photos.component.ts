@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { PhotosService } from '../services/photos.service';
 
 @Component({
   selector: 'app-view-photos',
@@ -9,7 +9,7 @@ import { UserService } from '../services/user.service';
 })
 export class ViewPhotosComponent implements OnInit {
 
-  constructor(private userService: UserService) {
+  constructor(private photosService: PhotosService) {
   }
   
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class ViewPhotosComponent implements OnInit {
   private photos: string[] = [];
 
   public async loadImages(): Promise<void> {
-    this.userService.getPhotos().subscribe(data => {
+    this.photosService.getPhotos().subscribe(data => {
       this.photos = JSON.parse(data);
       this.displayImages();
     });
