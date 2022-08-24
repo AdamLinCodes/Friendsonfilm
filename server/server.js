@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const port = 8000;
 const file = require("fs");
-const { json } = require('stream/consumers');
 const exec = require('child_process').exec;
 const mongoClient = require("mongodb").MongoClient;
 const config = require("./config.js");
@@ -10,11 +9,11 @@ const config = require("./config.js");
 var photosDb;
 
 //routes
-app.get('/retrievePhotos', getPhotos);
+app.get('/getPhotos', findAllPhotos);
 
-app.post('/facecheck', facecheckAuthentication);
+app.post('/scanFace', authenticateFace);
 
-app.post('/SignedUp', signUp);
+app.post('/addCredentials', insertCredentials);
 
 app.post('/checkCredentialsExist', credentialsExist);
 
@@ -33,7 +32,7 @@ mongoClient.connect(config.db.host, function(err, client) {
 
 
 //endpoints functions
-async function getPhotos(request, response) {
+async function findAllPhotos(request, response) {
   const photosCollection = photosDb.collection("photos collection");
   let base64Strings = [];
   await photosCollection.find({}).forEach(data => {
@@ -45,7 +44,7 @@ async function getPhotos(request, response) {
   response.end(JSON.stringify(base64Strings));
 }
 
-function facecheckAuthentication(request, response) {
+function authenticateFace(request, response) {
   let data = "";
 
   request.on('data', chunk => {
@@ -53,7 +52,7 @@ function facecheckAuthentication(request, response) {
   });
 
   request.on('end', () => {
-    file.writeFile("./FacialRecog/user.jpg", data, 'base64', (err) => {
+    file.writeFile("./FacialRecog/user/user.jpg", data, 'base64', (err) => {
       if(err) {
         response.writeHead(500, { 'Content-Type': 'text/html'});
         response.end();
@@ -76,7 +75,7 @@ function facecheckAuthentication(request, response) {
   });
 }
 
-async function signUp(request, response) {
+async function insertCredentials(request, response) {
 
   let data = '';
   request.on('data', chunk => {
@@ -150,6 +149,8 @@ async function credentialsExist(request, response) {
   });
 }
 
+
+// helper functions
 function os_func() {
   this.execCommand = function(cmd, callback) {
     exec(cmd, (error, stdout, stderr) => {

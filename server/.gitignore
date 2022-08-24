@@ -1,5 +1,2 @@
 /node_modules
-
-#Facial recogonition files
-/server/FacialRecog/scanResult.txt
-/server/FacialRecog/user.jpg
+/FacialRecog/user

@@ -28,7 +28,7 @@ export class CaptureFaceComponent implements OnInit {
 
     this.router.navigate(['/loading']);
 
-    this.userService.isExistingUser(webcamImage.imageAsBase64).subscribe(data => {
+    this.userService.isExistingFace(webcamImage.imageAsBase64).subscribe(data => {
       this.name = data;
       console.log('Server responded with name: ' + data);
       if (data != 'Unknown') {
