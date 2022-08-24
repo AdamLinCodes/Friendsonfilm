@@ -89,4 +89,4 @@ def classify_face(im):
     text_file.close()
 
 
-print(classify_face("user.jpg"))
+print(classify_face("./user/user.jpg"))
