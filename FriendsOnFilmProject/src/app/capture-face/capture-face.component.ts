@@ -32,8 +32,7 @@ export class CaptureFaceComponent implements OnInit {
       console.log('Server responded with name: ' + data);
       if (data != 'Unknown') {
         this.router.navigate(['/view-photos']);
-      }
-      else {
+      } else {
         alert(`Sorry, it looks like you don't have an account yet`);
         this.router.navigate(['/capture-face']);
       }

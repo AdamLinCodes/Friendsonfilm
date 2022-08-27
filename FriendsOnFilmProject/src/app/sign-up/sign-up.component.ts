@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ICredentials } from 'src/interfaces';
+import { ICredentials, ICredentialsResponse } from 'src/interfaces';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -35,13 +35,12 @@ export class SignUpComponent {
 
     if (this.passwordsMatch) {
       this.userService.sendCredentials(credentials).subscribe(data => {
-        const responseObject: any = JSON.parse(data);
+        const responseObject: ICredentialsResponse = JSON.parse(data);
 
         if (!responseObject['emailExists'] && !responseObject['usernameExists'] && !responseObject['passwordExists']) {
           console.log(responseObject);
           this.router.navigate(['/']);
-        }
-        else {
+        } else {
           this.emailExists = !responseObject['emailExists'];
           this.usernameExists = !responseObject['usernameExists'];
           this.passwordExists = !responseObject['passwordExists'];
