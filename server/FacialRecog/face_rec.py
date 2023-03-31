@@ -7,12 +7,8 @@ from time import sleep
 
 
 def get_encoded_faces():
-    """
-    looks through the faces folder and encodes all
-    the faces
+    #looks through the faces folder and encodes all the faces
 
-    :return: dict of (name, image encoded)
-    """
     encoded = {}
 
     for dirpath, dnames, fnames in os.walk("./faces"):
@@ -26,9 +22,8 @@ def get_encoded_faces():
 
 
 def unknown_image_encoded(img):
-    """
-    encode a face given the file name
-    """
+    #encode a face given the file name
+    
     face = fr.load_image_file("faces/" + img)
     encoding = fr.face_encodings(face)[0]
 
@@ -36,13 +31,7 @@ def unknown_image_encoded(img):
 
 
 def classify_face(im):
-    """
-    will find all of the faces in a given image and label
-    them if it knows what they are
-
-    :param im: str of file path
-    :return: list of face names
-    """
+    # will find all of the faces in a given image and label them if it knows what they are
     faces = get_encoded_faces()
     faces_encoded = list(faces.values())
     known_face_names = list(faces.keys())
